@@ -1,7 +1,7 @@
 import scrapy
 
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
+class SteamCrawler(scrapy.Spider):
+    name = 'steamcrawler'
     start_urls = ['http://store.steampowered.com/search/?filter=topsellers&page=1']
 
     def parse(self, response):
