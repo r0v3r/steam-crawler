@@ -2,6 +2,10 @@ from HTMLParser import HTMLParser
 import re
 
 class PriceParser(HTMLParser):
+    # initialize price
+    def init(self):
+        self.price = 0
+
     # set text of HTML tag in price field
     # price <div> may contain several prices,
     # the last price is the current price

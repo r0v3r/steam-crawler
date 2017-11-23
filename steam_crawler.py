@@ -8,7 +8,9 @@ class SteamCrawler(scrapy.Spider):
         parser = PriceParser()
 
         for item in response.css('a.search_result_row'):
+            parser.init()
             parser.feed(item.css('div.search_price').extract_first())
+            
             yield {'game': item.css('span.title::text').extract_first(),\
             'appid': item.css('a::attr(data-ds-appid)').extract_first(),\
             'img': item.css('div.search_capsule img::attr(src)').extract_first(),\
