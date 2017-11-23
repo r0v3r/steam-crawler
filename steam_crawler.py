@@ -15,5 +15,5 @@ class SteamCrawler(scrapy.Spider):
             'release': item.css('div.search_released::text').extract_first(),\
             'price': parser.price}
        
-        # for next_page in response.css('a.pagebtn'):
-        #     yield response.follow(next_page, self.parse)
+        for next_page in response.css('a.pagebtn'):
+            yield response.follow(next_page, self.parse)
