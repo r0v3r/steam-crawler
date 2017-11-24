@@ -3,6 +3,7 @@ from price_parser import PriceParser
 class SteamCrawler(scrapy.Spider):
     name = 'steamcrawler'
     start_urls = ['http://store.steampowered.com/search/?page=1']
+    page = 1
 
     def parse(self, response):
         parser = PriceParser()
@@ -18,4 +19,7 @@ class SteamCrawler(scrapy.Spider):
             'price': parser.price}
        
         for next_page in response.css('a.pagebtn'):
+            self.page+=1
+            print "page: "
+            print self.page
             yield response.follow(next_page, self.parse)
