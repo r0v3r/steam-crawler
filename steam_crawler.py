@@ -17,9 +17,7 @@ class SteamCrawler(scrapy.Spider):
             'img': item.css('div.search_capsule img::attr(src)').extract_first(),\
             'release': item.css('div.search_released::text').extract_first(),\
             'price': parser.price}
-       
+        
         for next_page in response.css('a.pagebtn'):
-            self.page+=1
-            print "page: "
-            print self.page
+            print 'crawling next page'
             yield response.follow(next_page, self.parse)
